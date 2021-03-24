@@ -1,0 +1,133 @@
+\documentclass[11pt,letterpaper,boxed,cm]{./hmcpset}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx, enumerate, amsmath, mathtools, amssymb, cancel, mathrsfs, fancyhdr, lastpage, extramarks, amsfonts, tabularx, gensymb, siunitx, verbatim, soul, bigfoot, empheq}
+\usepackage[breakable,skins]{tcolorbox} % yellowness
+\usepackage[T1]{fontenc}
+\usepackage[numbered,framed]{matlab-prettifier}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+\newlength\myverbindent 
+\setlength\myverbindent{1cm} % change this to change indentation
+\makeatletter
+\def\verbatim@processline{%
+  \hspace{\myverbindent}\the\verbatim@line\par}
+\makeatother
+
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\chead{\hmwkClass: \hmwkTitle} % Top center header
+\rhead{\firstxmark\ \hmwkDueDate} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\newcommand{\ind}{\hspace{4em}}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+\newcommand{\hmwkTitle}{Problem Set \hl{X}} % Assignment title
+\newcommand{\hmwkDueDate}{\hl{Due Date}} % Due date
+\newcommand{\hmwkClass}{\hl{Course \#}} % Course/class
+% \newcommand{\hmwkClassTime}{10:00am} % Class/lecture time
+% \newcommand{\hmwkClassInstructor}{Jacobsen} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{\hl{Name}} % Your name
+\usepackage{afterpage}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand\blankpage{%
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\let\ph\mlplaceholder % shorter macro
+\lstMakeShortInline"
+
+\lstset{
+  style              = Matlab-editor,
+  basicstyle         = \mlttfamily\linespread{0.5}\tiny,
+  escapechar         = ",
+  mlshowsectionrules = true,
+}
+\begin{document} {
+\vspace{-2cm}
+% \begin{flushleft}
+% Collaborators: Tim the Beaver
+% \end{flushleft}
+
+%------------------------- Problem 1 -------------------------
+\setcounter{equation}{0}
+\begin{problem}[1]
+  \emph{problem goes here...}
+\end{problem}
+
+\begin{solution}
+\emph{solution goes here...}
+\end{solution}
+\newpage
+
+%------------------------- Problem 2 -------------------------
+\setcounter{equation}{0}
+\begin{problem}[2]
+  \emph{problem goes here...}
+\end{problem}
+
+\begin{solution}
+\emph{solution goes here...}
+\end{solution}
+\newpage
+
+%------------------------- Problem Example -------------------------
+\setcounter{equation}{0}
+\begin{problem}[Example]
+  Find the curve $x(t)$ that minimizes the functional
+\[  J(x) = \int_{0}^{1} \left\{ \frac{1}{2} \dot{x}^2(t) + 3 x(t)\dot{x}(t) + 2x^2(t) + 4x(t) \right\} dt \]
+and passes through the points $x(0) = 1$ and $x(1) = 4$.
+\end{problem}
+
+\begin{solution}
+  The function, $x^*(t),$ which minimizes the cost above, $J(x)$, must satisfy the following first-order necessary condition:
+  \begin{align}
+  \frac{\partial g (x(t), \dot{x}(t), t)}{\partial x} &- \frac{d}{dt} \left( \frac{\partial g (x(t), \dot{x}(t), t)}{\partial \dot{x}} \right) = 0. \\
+  \shortintertext{Where }
+  g(x(t), \dot{x}(t), t) &= \frac{1}{2} \dot{x}^2(t) + 3 x(t)\dot{x}(t) + 2x^2(t) + 4x(t). \nonumber \\
+  \shortintertext{First, compute the partials of $g$ with respect to $x$ and $\dot{x}$.}
+  \frac{\partial g}{\partial x} &= g_x = 3 \dot{x}(t) + 4x(t) + 4 \\
+  \frac{\partial g}{\partial \dot{x}} &= g_{\dot{x}} = \dot{x}(t) + 3x(t) \\
+  \shortintertext{Substituting equations (2) and (3) into (1) results in the following:}
+  0 &= 3 \dot{x}(t) + 4x(t) + 4 - \frac{d}{dt} \left\{ \dot{x}(t) + 3x(t) \right\} \nonumber \\
+  &= 3 \dot{x}(t) + 4x(t) + 4 - \ddot{x}(t) - 3\dot{x}(t) \nonumber \\
+  \shortintertext{Rearranging this equation results in the following second-order, nonhomogeneous ODE:}
+  &= \ddot{x}(t) - 4x(t) - 4, \nonumber\\
+  \shortintertext{the solution to which has the form}
+  x(t) &= c_1 e^{2t} + c_2 e^{-2t} - 1. \\
+  \shortintertext{$c_1$ and $c_2$ are unknown constants. We can solve for them using the terminal conditions on $x$.}
+  x(0) = 1 &= c_1e^{2(0)} + c_2e^{-2(0)} - 1 \nonumber \\
+  c_2 &= 2-c_1 \nonumber \\
+  \shortintertext{Substituting this into equation (4) and using the final constraint, we have a solution for both unknown parameters.}
+  x(1) = 4  &= c_1 e^{2(1)} + (2-c_1) e^{-2(1)} - 1 \nonumber\\
+  5 &= c_1 e^{2} + 2 e^{-2}-c_1 e^{-2} \nonumber\\
+  5 - 2 e^{-2} &= c_1 (e^{2} - e^{-2}) \nonumber\\
+  c_1 &= \frac{5 - 2 e^{-2}}{e^2 - e^{-2}} \approx 0.652 \nonumber \\
+  c_2 &= 2-c1 \approx 1.348 \nonumber \\
+  \shortintertext{Thus, the optimal function which minimizes the functional is}
+  \Aboxed{x^*(t) &= 0.652e^{2t} + 1.348 e^{-2t} - 1}
+  \nonumber\end{align}
+\end{solution}
+
+\end{document}
